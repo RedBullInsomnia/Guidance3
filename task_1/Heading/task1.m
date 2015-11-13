@@ -70,7 +70,7 @@ r0=0;          %Inital yaw rate
 c=0;           %Current on (1)/off (0)
 
 nc = 7.3;
-dc = -15*pi/180;
+dc = 5*pi/180;
 
 sim MSFartoystyring
 rdata = r;
@@ -79,10 +79,10 @@ tdata = t;
 x0 = [40 -200 -0.03]';
 % Good values :p : [40 - 200 -0.02] or [39 -177 -0.02] 
 f = @(x)odefun(x,rdata,tdata,dc);
-x = lsqnonlin(f, x0);
+%x = lsqnonlin(f, x0);
 
 figure
-plot(tdata, rdata*180/pi, tdata, model_heading(x, rdata, tdata,dc)*180/pi, 'r');
+plot(tdata, rdata*180/pi, tdata, model_heading(save, rdata, tdata, dc)*180/pi, 'r');
 grid
 legend('Nonlinear model','Estimated 2nd-order nonlinear Nomoto model')
 

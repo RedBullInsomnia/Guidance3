@@ -25,7 +25,6 @@ r_tests = nan(size(d_c_tests));
 % Simulate for the rudder inputs and collect steady state value for r
 
 for i = 1:length(d_c_tests)
-    
     d_c = d_c_tests(i);
     sim('MSFartoystyring');
     r_tests(i) = r(end);
@@ -33,11 +32,9 @@ end
 
 %% Plot relationship between rudder angle and yaw rate
 
-figure(1);
-hold on;
-
+figure
 plot(radtodeg(d_c_tests), r_tests, 'x-');
-
+hold on;
 xlabel('\delta_c');
 ylabel('r');
 title('Steady state relationship between rudder angle and yaw rate');
@@ -63,11 +60,9 @@ c_f_0 = [-0.005 0.005];
 
 c_f = lsqcurvefit(f, c_f_0, t, r);
 
-figure(2);
-clf();
-hold on;
-
+figure
 plot(t, r);
+hold on
 plot(t, c_f(1) * (1 - exp(-c_f(2) * t)));
 
 T = 1 / c_f(2);
@@ -82,27 +77,26 @@ d_c = 8 * (pi/180);
 sim('MSFartoystyring');
 sim('nomoto_model');
 
-figure(3);
-hold on;
-
+figure
 plot(t, r);
+hold on
 plot(nomoto_t, nomoto_r);
 
 legend('MSFartoystyring', 'Nomoto');
 
 %% Testing of nonlinear model
 
-d_c = 1 * (pi/180);
+d_c = 15 * (pi/180);
 
 sim('MSFartoystyring');
 sim('nomoto_model');
 sim('nomoto_model_nonlinear');
 
-figure(4);
-hold on;
-
-plot(t, r);
-plot(nomoto_t, nomoto_r);
+figure
+plot(t, r, 'r');
+hold on
+plot(nomoto_t, nomoto_r, 'g');
+hold on
 plot(nonlinear_nomoto_t, nonlinear_nomoto_r);
 legend('MSFartoystyring', 'Linear Nomoto', 'Nonlinear Nomoto');
 

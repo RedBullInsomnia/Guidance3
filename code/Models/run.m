@@ -53,7 +53,7 @@ K_i2 = 0.005;
 u_desired = 7.3;
 psi_desired = deg2rad(0);
 
-sim MSFartoystyring
+sim MSFartoystyring_controlled
 
 %% Plots
 

@@ -40,31 +40,44 @@ tstop=8000;    %Sim stop time
 tsamp=10;      %Sampling time (NOT ODE solver time step)
 
 p0=zeros(2,1); %Initial position (NED)
-v0=[0.001 0]';  %Initial velocity (body)
+v0=[2 0]';     %Initial velocity (body)
 psi0=0;        %Inital yaw angle
 r0=0;          %Inital yaw rate
 c=0;           %Current on (1)/off (0)
 
-nc = 7.3;
+nc = 80*pi/180;
+% Heading controller
+psi_d = 0;
+xsi = 0.707;
+omega_b = 0.32;
+T = 117.52;
+K = 3.54;
+omega_n = omega_b /(sqrt(1 - 2*xsi^2 + sqrt(4*xsi^4 - 4*xsi^2 + 2)));
+
+K_p = -(T*omega_n^2)/K;
+K_d = -(20*xsi*omega_n*T - 1)/K;
+%K_i = K_p*omega_n/10;
+K_i = 0;
+
 K = 1.048;
 
-K_p = -3.4;
-K_d = -150;
+%K_p = -3.4;
+%K_d = -150;
 
-sim MSFartoystyring
+sim MSFartoystyring_surge
 rdata = v(:,1);
 tdata = t;
-F = @(x, tdata) v0(1)*exp(-tdata/x(1)) + (K*nc - 0.6)*(1 - exp(-tdata/x(1))); 
+F = @(x, tdata) v0(1)*exp(-tdata/x(1)) + x(2)*nc*(1 - exp(-tdata/x(1))); 
 x0 = [400 1];
 x = lsqcurvefit(F, x0, tdata, rdata);
 T = x(1)
-o = x(2)
+K = x(2)
 
 figure
 plot(tdata,rdata,'g',tdata, F(x, tdata),'r')
 grid
-title('Nonlinear least-squares fit of MS Farstoystyring model for \delta = 5 (deg)'),xlabel('time (s)')
-legend('Nonlinear model','Estimated 1st-order nonlinear Nomoto model')
+title('Nonlinear least-squares fit of MS Farstoystyring model for \delta = 8 (deg)'),xlabel('time (s)')
+legend('MSFartoystyring','Estimated 1st-order linear Nomoto model')
 
 %%
 T = 500;

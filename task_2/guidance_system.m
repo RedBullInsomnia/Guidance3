@@ -6,6 +6,7 @@ persistent initial_values_defined
 
 persistent waypoints
 persistent previous_waypoint_index
+persistent model_parameters
 
 if isempty(initial_values_defined)
     
@@ -14,40 +15,22 @@ if isempty(initial_values_defined)
     waypoints = waypoints_collection;
 
     previous_waypoint_index = 1;
+    
+    model_parameters  = get_model_parameters();
 end
 
 %% Initialization of local variables
+    
+current_position = [input(1); input(2)];
+track            = input(3);
+t                = input(4);
 
-model_parameters = get_model_parameters();
+%% Compute output from specified guidance system
 
-previous_waypoint = waypoints.get_point(previous_waypoint_index);
-next_waypoint     = waypoints.get_point(previous_waypoint_index + 1);
-
-current_position = [input(2); input(1)];                        % [E, N]
-
-%% Check if next waypoint is reached
-
-if (norm(next_waypoint - current_position) < model_parameters.R_ && previous_waypoint_index < (waypoints.N_points - 1))
-    previous_waypoint_index = previous_waypoint_index + 1;
+if (track == 1)
+    output = guidance_system_tracking(current_position, model_parameters, waypoints, previous_waypoint_index, t);
+else 
+    output = guidance_system_path_following(current_position, model_parameters, waypoints, previous_waypoint_index);
 end
 
-%% Compute desired course and speed
-
-delta_waypoint = next_waypoint - previous_waypoint;
-alpha          = atan2(delta_waypoint(1), delta_waypoint(2));   % Path parallell course
-
-delta_position = current_position - previous_waypoint;
-delta_position = delta_position([2 1]);                         % Swap to [N, E] instead of [E, N]
-
-R = [cos(alpha) -sin(alpha);
-     sin(alpha) cos(alpha)];
-
-epsilon = R' * delta_position;
-s = epsilon(1);
-e = epsilon(2);
-lookahead_distance = 400;
-
-desired_course = alpha + atan2(-e, lookahead_distance);
-desired_speed  = 10;
-
-output = [desired_course, desired_speed, previous_waypoint_index, e];
+end

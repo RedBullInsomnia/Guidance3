@@ -1,4 +1,4 @@
-function pathplotter(x, y,  psi, tsamp, dec, tstart, tstop, track, WP)
+function pathplotter(x, y,  psi, tsamp, dec, tstart, tstop, track, WP, u, v)
 %PATHPLOTTER draws the path of the ship MS Fartoystyring used in TTK4190 
 %Guidance and Control Assignment 3, Tasks 2.3 to 2.7, inclusive.
 %
@@ -45,6 +45,8 @@ north = 1;
 east  = 2;
 
 % What to plot
+
+should_plot_speed_vectors                   = true;
 
 should_plot_distance_to_target              = true;
 should_plot_distance_to_target_element_wise = true;
@@ -122,6 +124,12 @@ for now = 1:dec:length(x)
 
     plot(y(now) + boat(2,:), x(now) + boat(1, :), 'y');
     patch(y(now) + boat(2,:), x(now) + boat(1, :), 'y');
+    
+    v_now = tmpR * [u(now) v(now)]';
+    
+    if (should_plot_speed_vectors)
+       plot([y(now) (y(now) + 50 * v_now(2))], [x(now) (x(now) + 50 * v_now(1))], 'k', 'LineWidth', 3);
+    end
     
     tnow = tnow + tsamp * dec;
 end

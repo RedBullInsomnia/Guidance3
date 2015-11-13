@@ -2,70 +2,137 @@
 clc;
 clear all;
 
+%% Simulation
+
 tstart = 0;         %Sim start time
 tstop  = 5000;      %Sim stop time
 tsamp  = 10;        %Sampling time (NOT ODE solver time step)
-track  = 0;
 dec    = 10;
 
-p0   = [0; 0];%zeros(2,1); %Initial position (NED)
+p0   = zeros(2,1);  %Initial position (NED)
 v0   = [6.63 0]';   %Initial velocity (body)
 psi0 = 0;           %Inital yaw angle
 r0   = 0;           %Inital yaw rate
-c    = 0;           %Current on (1)/off (0)
+c    = 1;           %Current on (1)/off (0)
 
-not_use_beta_transform  = 1;
+not_use_beta_transform  = 0;
 not_use_speed_transform = 1;
 
-sim MSFartoystyring
+track  = 1;
 
-waypoints = waypoints_collection;
+p0 = [0; 0];
 
-pathplotter(p(:, 1), p(:, 2),  psi, tsamp, dec, tstart, tstop, track, flipud(waypoints.waypoints));
-return;
+sim('MSFartoystyring');
 
-%%
+%% Results
 
-figure(1);
-clf();
-hold on;
+u = v(:, 1);
+v = v(:, 2);
 
-plot(p(:, 2), p(:, 1));
-waypoints.plot_markers('k');
-waypoints.plot_piecewise_continuous('k');
-title('Path');
-legend('MSFartøystyring', 'Path');
-axis equal;
+if (true)
+    
+    waypoints = waypoints_collection;
+    pathplotter(p(:, 1), p(:, 2),  psi, tsamp, dec, tstart, tstop, track, waypoints.waypoints, u, v);
+end
+    
+figureIndex = 12;
 
-%
+% Speed
 
-figure(2);
-clf();
-hold on;
+if (true)
 
-plot(t, radtodeg(psi));
-plot(t, radtodeg(psi_d(1, :)));
-plot(t, radtodeg(chi_d(1, :)));
-plot(t, radtodeg(beta));
-legend('\psi', '\psi_d', '\chi_d', '\beta');
+	figure(figureIndex);
+	clf();
+	figureIndex = figureIndex + 1;
+	hold on;
 
-figure(5)
-hold on;
-plot(t, v);
-plot(t, radtodeg(beta));
+	plot(t, U_d(1, :));
+	plot(t, sqrt(u .^ 2 + v .^ 2));
+    plot(t, u);
+    plot(t, u_d(1, :));
+    plot(t, v);
+	title('Speed');
+	legend('U_d', 'U', 'u', 'u_d', 'v');
+end
 
-%
+% Inputs
 
-figure(3);
-clf();
+if (true)
 
-plot(t, waypoint_index(1, :));
-title('Waypoint index');
+	figure(figureIndex);
+	clf();
+	figureIndex = figureIndex + 1;
+	hold on;
 
-%
+	plotyy(t, d_c, t, n_c(1, :));
 
-figure(4);
-clf();
+	title('Inputs');
+end
 
-plot(t, e(1, :));
-title('Cross-track error');
+% Heading
+
+if (true)
+
+	figure(figureIndex);
+	clf();
+	figureIndex = figureIndex + 1;
+	hold on;
+
+	plot(t, radtodeg(psi));
+	plot(t, radtodeg(psi_d(1, :)));
+
+	legend('\psi', '\psi_d');
+end
+
+% Course
+
+if (true)
+
+	figure(figureIndex);
+	clf();
+	figureIndex = figureIndex + 1;
+	hold on;
+
+	plot(t, radtodeg(chi_d(1, :)));
+	plot(t, radtodeg(psi) + radtodeg(beta));
+	legend('\chi_d', '\chi');
+end
+
+% Crab angle
+
+if (true)
+
+	figure(figureIndex);
+	figureIndex = figureIndex + 1;
+	hold on;
+    
+	plot(t, v);
+	plot(t, radtodeg(beta));
+    
+    title('Crab angle');
+    legend('v', '\beta');
+end
+
+% Waypoint index
+
+if (false)
+
+	figure(figureIndex);
+	clf();
+	figureIndex = figureIndex + 1;
+
+	plot(t, waypoint_index(1, :));
+	title('Waypoint index');
+end
+
+% Cross track
+
+if (false)
+
+	figure(figureIndex);
+	clf();
+	figureIndex = figureIndex + 1;
+
+	plot(t, e(1, :));
+	title('Cross-track error');
+end

@@ -2,8 +2,11 @@ classdef waypoints_collection
    
    properties
         waypoints;          % Array of waypoints, ith column is ith waypoint
-                            % in [E, N] dimensions, to comply with common x,y
-                        
+                            % in [N, E] dimensions
+                                    
+        north;              % Indexes for accessing the waypoint collection in
+        east;               % a more readable way
+        
         N_points;
         N_lines;
    end
@@ -16,8 +19,9 @@ classdef waypoints_collection
            
             obj.waypoints = load('WP');
             obj.waypoints = obj.waypoints.WP;
-            obj.waypoints = obj.waypoints([2 1], :);    % Swap so we use E, N for all of script
-                                                        % Easier when used to x,y
+            
+            obj.north = 1;
+            obj.east  = 2;
        
             obj.N_points = size(obj.waypoints, 2);
             obj.N_lines  = obj.N_points - 1;
@@ -34,14 +38,14 @@ classdef waypoints_collection
        
        function plot_markers(obj, color)
             
-            plot(obj.waypoints(1, :), obj.waypoints(2, :), ['o' color], 'MarkerFaceColor', color);
+            plot(obj.waypoints(obj.east, :), obj.waypoints(obj.north, :), ['o' color], 'MarkerFaceColor', color);
        end
        
        %% Straight line
        
        function plot_piecewise_continuous(obj, color)
             
-            plot(obj.waypoints(1, :), obj.waypoints(2, :), color);
+            plot(obj.waypoints(obj.east, :), obj.waypoints(obj.north, :), color);
        end
        
        %% Cubic Hermitian interpolation
@@ -55,10 +59,10 @@ classdef waypoints_collection
 
             time = 0:0.1:max(waypoint_times);
 
-            path_E = pchip(waypoint_times, obj.waypoints(1, :), time);
-            path_N = pchip(waypoint_times, obj.waypoints(2, :), time);
+            path_north = pchip(waypoint_times, obj.waypoints(obj.north, :), time);
+            path_east  = pchip(waypoint_times, obj.waypoints(obj.east, :), time);
 
-            plot(path_E, path_N, color);
+            plot(path_east, path_north, color);
        end
        
        %% Turning circles
@@ -72,8 +76,8 @@ classdef waypoints_collection
             waypoint_lines = nan(2, obj.N_lines);
 
             for i = 1:(obj.N_points - 1)
-               waypoint_lines(1, i) = obj.waypoints(1, i + 1) - obj.waypoints(1, i);
-               waypoint_lines(2, i) = obj.waypoints(2, i + 1) - obj.waypoints(2, i);
+               waypoint_lines(obj.north, i) = obj.waypoints(obj.north, i + 1) - obj.waypoints(obj.north, i);
+               waypoint_lines(obj.east, i)  = obj.waypoints(obj.east, i + 1)  - obj.waypoints(obj.east, i);
             end
             
             % Calculate and draw circles
@@ -103,37 +107,37 @@ classdef waypoints_collection
                 tangent_point_1 = obj.waypoints(:, i + 1) + (line_1 * k_1);
                 tangent_point_2 = obj.waypoints(:, i + 1) + (line_2 * k_2);
 
-                plot(tangent_point_1(1), tangent_point_1(2), ['x' color]);
-                plot(tangent_point_2(1), tangent_point_2(2), ['x' color]);
+                plot(tangent_point_1(obj.east), tangent_point_1(obj.north), ['x' color]);
+                plot(tangent_point_2(obj.east), tangent_point_2(obj.north), ['x' color]);
 
-                % Find normal vector to both tangents
+                % Find unit normal vector for both tangents
 
                 normal_1 = [-line_1(2) line_1(1)] / norm(line_1);
                 normal_2 = [-line_2(2) line_2(1)] / norm(line_2);
 
                 % Find equation for the lines of the normal vectors
 
-                a = normal_1(2) / normal_1(1);
-                b = -a * tangent_point_1(1) + tangent_point_1(2);
+                a = normal_1(obj.north) / normal_1(obj.east);
+                b = -a * tangent_point_1(obj.east) + tangent_point_1(obj.north);
 
-                c = normal_2(2) / normal_2(1);
-                d = -c * tangent_point_2(1) + tangent_point_2(2);
+                c = normal_2(obj.north) / normal_2(obj.east);
+                d = -c * tangent_point_2(obj.east) + tangent_point_2(obj.north);
 
                 % Where lines cross is the center of the circle
 
-                cross_E = (b - d) / (c - a);
-                cross_N = a * cross_E + b;
+                cricle_center_east  = (b - d) / (c - a);
+                circle_center_north = a * cricle_center_east + b;
 
-                plot(cross_E, cross_N, ['+' color]);
+                plot(cricle_center_east, circle_center_north, ['+' color]);
 
                 % Draw circle
 
                 theta = linspace(0, 2 * pi, 1000);
 
-                circle_E = cross_E + R_ * cos(theta);
-                circle_N = cross_N + R_ * sin(theta);
+                circle_north = circle_center_north + R_ * sin(theta);
+                circle_east  = cricle_center_east  + R_ * cos(theta);
 
-                plot(circle_E, circle_N, ['--' color]);
+                plot(circle_east, circle_north, ['--' color]);
             end
        end
    end

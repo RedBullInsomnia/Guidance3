@@ -13,7 +13,7 @@ c=0;           %Current on (1)/off (0)
 % Define what rudder angles (d_c) to simulate for
 
 d_c_limit        = 25 * (pi/180);
-d_c_limit_detail = 3 * (pi/180);
+d_c_limit_detail = 1 * (pi/180);
 
 number_of_tests = 20;
 d_c_tests =            linspace(-d_c_limit,         -d_c_limit_detail,  number_of_tests);
@@ -47,9 +47,9 @@ title('Steady state relationship between rudder angle and yaw rate');
 p = @(c, x_data) (c(4) * x_data .^ 3) + (c(3) * x_data .^ 2) + (c(2) * x_data) + c(1);
 c_0 = [-1 -1 -1 0]; % Guess at coefficients
 
-c_ss = lsqcurvefit(p, c_0, d_c_tests, r_tests);
+c_ss = lsqcurvefit(p, c_0, r_tests, d_c_tests);
 
-plot(radtodeg(d_c_tests), (c_ss(4) * d_c_tests .^ 3) + (c_ss(3) * d_c_tests .^ 2) + (c_ss(2) * d_c_tests) + c_ss(1));
+plot(radtodeg((c_ss(4) * r_tests .^ 3) + (c_ss(3) * r_tests .^ 2) + (c_ss(2) * r_tests) + c_ss(1)), r_tests);
 
 %% Fit a first order Nomoto
 
@@ -92,7 +92,7 @@ legend('MSFartoystyring', 'Nomoto');
 
 %% Testing of nonlinear model
 
-d_c = 15 * (pi/180);
+d_c = 1 * (pi/180);
 
 sim('MSFartoystyring');
 sim('nomoto_model');
@@ -103,6 +103,6 @@ hold on;
 
 plot(t, r);
 plot(nomoto_t, nomoto_r);
-plot(nonlinear_nomoto_t, nonlinear_nomoto_r / 4.1);
+plot(nonlinear_nomoto_t, nonlinear_nomoto_r);
 legend('MSFartoystyring', 'Linear Nomoto', 'Nonlinear Nomoto');
 

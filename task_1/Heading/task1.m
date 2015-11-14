@@ -1,5 +1,5 @@
 N = 20000;     % number of samples
-h = 0.1;      % sample time
+h = 0.1;       % sample time
 xout = zeros(N, 2);
 x = zeros(6, 1);
 x(1) = 8.23;

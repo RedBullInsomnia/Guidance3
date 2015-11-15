@@ -6,17 +6,16 @@ persistent initial_values_defined
 
 persistent waypoints
 persistent previous_waypoint_index
-persistent model_parameters
+persistent settings
 
 if isempty(initial_values_defined)
     
     initial_values_defined = 1;
     
     waypoints = waypoints_collection;
-
     previous_waypoint_index = 1;
     
-    model_parameters  = get_model_parameters();
+    settings  = get_settings();
 end
 
 %% Initialization of local variables
@@ -28,9 +27,11 @@ t                = input(4);
 %% Compute output from specified guidance system
 
 if (track == 1)
-    output = guidance_system_tracking(current_position, model_parameters, waypoints, previous_waypoint_index, t);
+    [desired_course, desired_speed, previous_waypoint_index, e] = guidance_system_tracking(current_position, settings, waypoints, previous_waypoint_index, t);
 else 
-    output = guidance_system_path_following(current_position, model_parameters, waypoints, previous_waypoint_index);
+    [desired_course, desired_speed, previous_waypoint_index, e] = guidance_system_path_following(current_position, settings, waypoints, previous_waypoint_index);
 end
+
+output = [desired_course, desired_speed, previous_waypoint_index, e];
 
 end

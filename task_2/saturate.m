@@ -1,11 +1,9 @@
-function output = saturate(input, lower_limit, upper_limit)
+function [value] = saturate(value, lower_limit, upper_limit)
 
-if (input < lower_limit)
-    input = lower_limit;
-elseif (input > upper_limit)
-    input = upper_limit;
+if (value < lower_limit)
+    value = lower_limit;
+elseif (value > upper_limit)
+    value = upper_limit;
 end
-
-output = input;
 
 end

@@ -1,4 +1,4 @@
-function e = odefun(p, rdata, tdata,dc)
+function e = odefun(p, rdata, tdata dc)
 %% Discretized nomoto model
 
 % p(1) = T1

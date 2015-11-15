@@ -20,4 +20,3 @@ plot(t, psi, t, psi_d, 'r')
 xlabel('time(s)');
 ylabel('Heading(rad)');
 legend('\psi', '\psi_{desired}');
-title('\psi and \psi_{desired} in function of the time');

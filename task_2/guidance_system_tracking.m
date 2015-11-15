@@ -1,7 +1,9 @@
-function[output] = guidance_system_tracking(current_position, model_parameters, waypoints, previous_waypoint_index, t)
+function [desired_course, desired_speed, previous_waypoint_index, e] = guidance_system_tracking(current_position, settings, waypoints, previous_waypoint_index, t)
 
 previous_waypoint = waypoints.get_point(previous_waypoint_index);
 next_waypoint     = waypoints.get_point(previous_waypoint_index + 1);
+
+%% Compute projection of position down to LOS line
 
 delta_waypoint = next_waypoint - previous_waypoint;
 alpha          = atan2(delta_waypoint(2), delta_waypoint(1));   % Path parallell course
@@ -13,25 +15,25 @@ R = [cos(alpha) -sin(alpha);
 
 epsilon = R' * delta_position;
 
-delta_tracking_distance = (delta_waypoint / norm(delta_waypoint)) * model_parameters.tracking_distance_reference;
-delta_target_position = (delta_waypoint / norm(delta_waypoint)) * model_parameters.U_target * t;
+%% Compute along-track(s) and cross-track(e) errors
 
-s_reference = delta_target_position - delta_tracking_distance;
-s = norm(s_reference) - (epsilon(1) - norm(delta_waypoint));    % Along-track error
+% Target begins at second waypoint
+
+target_path_direction = delta_waypoint / norm(delta_waypoint);
+target_position       = delta_waypoint + target_path_direction * settings.tracking.target_speed * t;
+
+% Want to be tracking_distance_reference behind the target
+
+s_reference = target_position - target_path_direction *  settings.tracking.distance_reference;
+s           = norm(s_reference) - epsilon(1);
     
-e = epsilon(2);        
+e           = epsilon(2);
 
 %% Compute desired course and speed
 
-lookahead_distance = 2 * model_parameters.L;
-
-desired_course = alpha + atan2(-e, lookahead_distance);
-desired_speed  = model_parameters.U_target + model_parameters.approach_speed * s / sqrt(s^2 + 1000^2);
+desired_course = alpha + atan2(-e, settings.tracking.lookahead_distance);
+desired_speed  = settings.tracking.target_speed + settings.tracking.approach_speed * s / sqrt(s^2 + 1000^2);
 
 desired_speed = saturate(desired_speed, 2.5, Inf);
-
-%% Output
-
-output = [desired_course, desired_speed, previous_waypoint_index, e];
 
 end

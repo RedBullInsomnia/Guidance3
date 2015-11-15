@@ -16,11 +16,9 @@ r0   = 0;           %Inital yaw rate
 c    = 1;           %Current on (1)/off (0)
 
 not_use_beta_transform  = 0;
-not_use_speed_transform = 1;
+not_use_speed_transform = 0;
 
 track  = 1;
-
-p0 = [0; 0];
 
 sim('MSFartoystyring');
 

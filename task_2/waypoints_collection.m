@@ -69,7 +69,7 @@ classdef waypoints_collection
           
        function plot_circles(obj, color)
             
-            model_parameters = get_model_parameters();
+            settings = get_settings();
            
             % Vectors from waypoint n to waypoint n + 1
 
@@ -96,7 +96,7 @@ classdef waypoints_collection
 
                 % Turning radius and start-to-turn distance to point
 
-                R_ = model_parameters.R_;
+                R_ = settings.ship.R_;
                 R  = R_ / tan(alpha);
 
                 % Find tangent points on either line

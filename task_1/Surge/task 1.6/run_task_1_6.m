@@ -40,6 +40,8 @@ xlabel 'time (s)'
 ylabel 'speed (m/s)'
 legend('MSFartoystyring','Estimated 1st-order linear model')
 
+%% Trying to fit through recursion
+
 x0 = [3000 -1 -1];
 f = @(x) odefun(x,rdata,tdata,nc);
 x = lsqnonlin(f, x0);
@@ -48,14 +50,4 @@ x
 % For nc =  1.39 rad/s, T=3531, xu = -0.3691, xu|u| = -0.4737
 % For nc = 0.17 rad/s, T= 28141, xu = -0.37, xu|u| = -3.8087
 
-
-%% Root locus for the gains, to be moved to task 1.7, if still used 
-% T = 3000;
-% K = 1.05;
-% hw = tf(K, [T 1]);
-% fb = tf([20 1], [1 0]);
-% 
-% cl = hw*fb;
-% figure
-% rlocus(cl, 0:0.0001:0.05);
-% title ''
+% Surge model is derived from this fitting.

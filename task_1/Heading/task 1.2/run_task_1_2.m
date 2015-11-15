@@ -32,12 +32,12 @@ end
 
 %% Plot relationship between rudder angle and yaw rate
 
-figure
-plot(radtodeg(d_c_tests), r_tests, 'x-');
-hold on;
-xlabel('\delta_c');
-ylabel('r');
-title('Steady state relationship between rudder angle and yaw rate');
+% figure
+% plot(radtodeg(d_c_tests), r_tests, 'x-');
+% hold on;
+% xlabel('\delta_c');
+% ylabel('r');
+% title('Steady state relationship between rudder angle and yaw rate');
 
 %% Curve fit steady state response
 
@@ -46,7 +46,7 @@ c_0 = [-1 -1 -1 0]; % Guess at coefficients
 
 c_ss = lsqcurvefit(p, c_0, r_tests, d_c_tests);
 
-plot(radtodeg((c_ss(4) * r_tests .^ 3) + (c_ss(3) * r_tests .^ 2) + (c_ss(2) * r_tests) + c_ss(1)), r_tests);
+%plot(radtodeg((c_ss(4) * r_tests .^ 3) + (c_ss(3) * r_tests .^ 2) + (c_ss(2) * r_tests) + c_ss(1)), r_tests);
 
 %% Fit a first order Nomoto
 
@@ -60,10 +60,10 @@ c_f_0 = [-0.005 0.005];
 
 c_f = lsqcurvefit(f, c_f_0, t, r);
 
-figure
-plot(t, r);
-hold on
-plot(t, c_f(1) * (1 - exp(-c_f(2) * t)));
+% figure
+% plot(t, r);
+% hold on
+% plot(t, c_f(1) * (1 - exp(-c_f(2) * t)));
 
 T = 1 / c_f(2);
 K = c_f(1) / d_c;
@@ -72,30 +72,28 @@ disp(['Nomoto model: ' num2str(T) 'r^ + r = ' num2str(K) '\delta']);
 
 %% Testing of linear model
 
-d_c = 8 * (pi/180);
-
-sim('MSFartoystyring');
-sim('nomoto_model');
-
-figure
-plot(t, r);
-hold on
-plot(nomoto_t, nomoto_r);
-
-legend('MSFartoystyring', 'Nomoto');
+% d_c = 8 * (pi/180);
+% 
+% sim('MSFartoystyring');
+% sim('nomoto_model');
+% 
+% figure
+% plot(t, r);
+% hold on
+% plot(nomoto_t, nomoto_r);
+% 
+% legend('MSFartoystyring', 'Nomoto');
 
 %% Testing of nonlinear model
 
 d_c = 15 * (pi/180);
 
 sim('MSFartoystyring');
-sim('nomoto_model');
+%sim('nomoto_model');
 sim('nomoto_model_nonlinear');
 
 figure
 plot(t, r, 'r');
-hold on
-plot(nomoto_t, nomoto_r, 'g');
 hold on
 plot(nonlinear_nomoto_t, nonlinear_nomoto_r);
 legend('MSFartoystyring', 'Linear Nomoto', 'Nonlinear Nomoto');

@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.161"
+    ComputedModelVersion    "1.163"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -66,9 +66,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Hwk"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Nov 15 20:30:01 2015"
-  RTWModifiedTimeStamp	  369520198
-  ModelVersionFormat	  "1.%<AutoIncrement:161>"
+  LastModifiedDate	  "Sun Nov 15 22:56:53 2015"
+  RTWModifiedTimeStamp	  369529008
+  ModelVersionFormat	  "1.%<AutoIncrement:163>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1002,7 +1002,7 @@ Model {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "psi"
@@ -1035,7 +1035,7 @@ Model {
 	  SID			  "99"
 	  Position		  [250, 274, 320, 336]
 	  ZOrder		  82
-	  Gain			  "-0.0059"
+	  Gain			  "0"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
@@ -1068,7 +1068,7 @@ Model {
 	  SID			  "71"
 	  Position		  [260, 357, 310, 403]
 	  ZOrder		  75
-	  Gain			  "-20"
+	  Gain			  "-2000"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off

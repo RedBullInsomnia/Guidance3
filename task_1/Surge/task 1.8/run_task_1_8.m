@@ -15,7 +15,7 @@ plot(t, v(:,1), t, u_desired);
 grid
 xlabel 'time (s)'
 ylabel 'velocity (m/s)'
-legend('Surge speed', 'desired surge speed');
+legend('Surge speed', 'Desired surge speed');
 
 error = u_desired - v(:,1);
 figure

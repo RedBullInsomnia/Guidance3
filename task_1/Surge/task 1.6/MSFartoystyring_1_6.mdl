@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.84"
+    ComputedModelVersion    "1.90"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -66,9 +66,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Hwk"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Nov 15 13:53:21 2015"
-  RTWModifiedTimeStamp	  369496400
-  ModelVersionFormat	  "1.%<AutoIncrement:84>"
+  LastModifiedDate	  "Mon Nov 16 00:41:37 2015"
+  RTWModifiedTimeStamp	  369535296
+  ModelVersionFormat	  "1.%<AutoIncrement:90>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1477,7 +1477,7 @@ Model {
       SID		      "24"
       Position		      [145, 310, 175, 340]
       ZOrder		      -10
-      Value		      "psi_d"
+      Value		      "0"
     }
     Block {
       BlockType		      Clock
@@ -1497,7 +1497,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"Heading controller_new\n"
-	Location		[-8, 0, 1608, 876]
+	Location		[0, 0, 960, 788]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1509,7 +1509,7 @@ Model {
 	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  Inport
 	  Name			  "psi"
@@ -1522,7 +1522,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "r"
 	  SID			  "42"
-	  Position		  [160, 378, 190, 392]
+	  Position		  [160, 298, 190, 312]
 	  ZOrder		  84
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -1538,22 +1538,11 @@ Model {
 	}
 	Block {
 	  BlockType		  Gain
-	  Name			  "Gain1"
-	  SID			  "44"
-	  Position		  [395, 37, 445, 83]
-	  ZOrder		  97
-	  Gain			  "1.9202e+03"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
 	  Name			  "Gain3"
 	  SID			  "45"
 	  Position		  [395, 112, 445, 158]
 	  ZOrder		  95
-	  Gain			  "0"
+	  Gain			  "-0.6"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
@@ -1562,7 +1551,7 @@ Model {
 	  BlockType		  Gain
 	  Name			  "Gain4"
 	  SID			  "46"
-	  Position		  [395, 357, 445, 403]
+	  Position		  [395, 277, 445, 323]
 	  ZOrder		  85
 	  NamePlacement		  "alternate"
 	  Gain			  "-484"
@@ -1574,7 +1563,7 @@ Model {
 	  BlockType		  Gain
 	  Name			  "Gain5"
 	  SID			  "47"
-	  Position		  [360, 467, 410, 513]
+	  Position		  [360, 387, 410, 433]
 	  ZOrder		  87
 	  Gain			  "20"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
@@ -1587,7 +1576,7 @@ Model {
 	  SID			  "48"
 	  Position		  [395, 182, 445, 228]
 	  ZOrder		  91
-	  Gain			  "-20"
+	  Gain			  "-1960"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
@@ -1605,7 +1594,7 @@ Model {
 	  Name			  "Product1"
 	  SID			  "50"
 	  Ports			  [2, 1]
-	  Position		  [295, 361, 325, 394]
+	  Position		  [295, 281, 325, 314]
 	  ZOrder		  88
 	  InputSameDT		  off
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
@@ -1617,25 +1606,11 @@ Model {
 	  Name			  "Sum1"
 	  SID			  "51"
 	  Ports			  [2, 1]
-	  Position		  [480, 370, 500, 390]
+	  Position		  [480, 290, 500, 310]
 	  ZOrder		  86
 	  ShowName		  off
 	  IconShape		  "round"
 	  Inputs		  "|++"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum2"
-	  SID			  "52"
-	  Ports			  [2, 1]
-	  Position		  [615, 195, 635, 215]
-	  ZOrder		  98
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "++|"
 	  InputSameDT		  off
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
@@ -1712,17 +1687,8 @@ Model {
 	  SrcBlock		  "psi"
 	  SrcPort		  1
 	  Points		  [60, 0]
-	  Branch {
-	    ZOrder		    7
-	    DstBlock		    "Sum4"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    8
-	    Points		    [0, -90]
-	    DstBlock		    "Gain1"
-	    DstPort		    1
-	  }
+	  DstBlock		  "Sum4"
+	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  9
@@ -1793,25 +1759,10 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  19
-	  SrcBlock		  "Sum2"
-	  SrcPort		  1
-	  DstBlock		  "dc"
-	  DstPort		  1
-	}
-	Line {
 	  ZOrder		  20
 	  SrcBlock		  "Sum3"
 	  SrcPort		  1
-	  DstBlock		  "Sum2"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  21
-	  SrcBlock		  "Gain1"
-	  SrcPort		  1
-	  Points		  [175, 0]
-	  DstBlock		  "Sum2"
+	  DstBlock		  "dc"
 	  DstPort		  1
 	}
       }

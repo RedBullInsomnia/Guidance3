@@ -59,14 +59,14 @@ f = tf(K, [T 1 0]);
 % margin (f)
 
 % Controller, after book, page ...
-xsi = 1; % critical damping
-omega_b = 0.02; %bandwith of the system
-omega_n = omega_b /(sqrt(1 - 2*xsi^2 + sqrt(4*xsi^4 - 4*xsi^2 + 2)));
-
-K_p = (T*omega_n^2)/K
-K_d = (2*xsi*omega_n*T - 1)/K
-K_i = K_p*omega_n/10
-
+% xsi = 1; % critical damping
+% omega_b = 0.02; %bandwith of the system
+% omega_n = omega_b /(sqrt(1 - 2*xsi^2 + sqrt(4*xsi^4 - 4*xsi^2 + 2)));
+% 
+% K_p = (T*omega_n^2)/K
+% K_d = (2*xsi*omega_n*T - 1)/K
+% K_i = K_p*omega_n/10
+% 
 
 psi_d = deg2rad(18);
 
@@ -74,4 +74,9 @@ tstop = 4000;
 sim heading_model_controlled;
 
 figure
-plot(tout, rad2deg(psi))
+plot(t, rad2deg(psi))
+hold on
+grid on
+plot(get(gca,'xlim'), [rad2deg(psi_d) rad2deg(psi_d)], 'r--');
+xlabel 'time (s)'
+ylabel('Heading $\psi$ (rad)', 'Interpreter', 'latex')

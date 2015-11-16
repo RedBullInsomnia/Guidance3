@@ -96,5 +96,5 @@ figure
 plot(t, r, 'r');
 hold on
 plot(nonlinear_nomoto_t, nonlinear_nomoto_r);
-legend('MSFartoystyring', 'Linear Nomoto', 'Nonlinear Nomoto');
+legend('MSFartoystyring', 'Nonlinear Nomoto');
 

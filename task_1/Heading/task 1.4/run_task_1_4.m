@@ -1,3 +1,7 @@
+clear all
+close all
+clc
+
 tstart=0;      %Sim start time
 tstop=3000;    %Sim stop time
 tsamp=10;      %Sampling time (NOT ODE solver time step)
@@ -8,13 +12,17 @@ psi0=0;        %Inital yaw angle
 r0=0;          %Inital yaw rate
 c=1;           %Current on (1)/off (0)
 
-t = 0:10:3000;
+t = tstart:tsamp:tstop;
 psi_d = zeros(length(t),2);
 psi_d(:,2) = -0.3*sin(0.008*t);
 psi_d(:,1) = t;
 nc = 7.3;
 
-% K_i was -0.00001 at first (and on the saved graphs)
+% Controller gains :
+Ki = -0.06;
+lf3 = -2000;
+lf1 = -500;
+lf2 = 20;
 
 sim MSFartoystyring_1_4
 

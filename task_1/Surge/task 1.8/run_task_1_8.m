@@ -1,3 +1,7 @@
+clear all
+close all
+clc
+
 tstart=0;      %Sim start time
 tstop=8000;    %Sim stop time
 tsamp=10;      %Sampling time (NOT ODE solver time step)
@@ -8,8 +12,13 @@ psi0=0;        %Inital yaw angle
 r0=0;          %Inital yaw rate
 c=1;           %Current on (1)/off (0)
 
+% Controller gains
+Ki = -0.01;
+Kp = -300;
+
 sim MSFartoystyring_1_8
 
+% Figure 1 u and u_d
 figure
 plot(t, v(:,1), t, u_desired);
 grid
@@ -17,6 +26,8 @@ xlabel 'time (s)'
 ylabel 'velocity (m/s)'
 legend('Surge speed', 'Desired surge speed');
 
+
+% Figure 2 error
 error = u_desired - v(:,1);
 figure
 plot(t, error)

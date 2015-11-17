@@ -9,6 +9,10 @@ psi0=0;        %Inital yaw angle
 r0=0;          %Inital yaw rate
 c=0;           %Current on (1)/off (0)
 
+Ki = 2000;
+Kp = 200000;
+Kd = 12000;
+
 %% Relationship between rudder angle and yaw rate
 
 % Define what rudder angles (d_c) to simulate for
@@ -70,7 +74,7 @@ f = tf(K, [T 1 0]);
 
 psi_d = deg2rad(9);
 
-tstop = 4000;
+tstop = 1000;
 sim heading_model_controlled;
 
 figure

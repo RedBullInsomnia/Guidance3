@@ -14,14 +14,21 @@ c=1;           %Current on (1)/off (0)
 
 t = tstart:tsamp:tstop;
 psi_d = zeros(length(t),2);
+r_d = psi_d;
 psi_d(:,2) = -0.3*sin(0.008*t);
+r_d(:,2) = -0.3*0.008*cos(0.008*t);
 psi_d(:,1) = t;
+r_d(:,1) = t;
 nc = 7.3;
 
 % Controller gains :
-Ki = -0.06;
-lf3 = -2000;
-lf1 = -500;
+%Ki = -0.06;
+Ki = -2000;
+Kp = -2000000;
+Kd = 11000;
+lf4 = -1.8257e+06;
+lf3 = 2000;
+lf1 = 500;
 lf2 = 20;
 
 sim MSFartoystyring_1_4

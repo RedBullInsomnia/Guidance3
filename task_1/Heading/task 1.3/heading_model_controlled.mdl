@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.109"
+    ComputedModelVersion    "1.145"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -30,7 +30,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [51.0, 0.0, 961.0, 889.0]
+      Location		      [51.0, 0.0, 1299.0, 889.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -47,16 +47,28 @@ Model {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Object {
-	$PropName		"EditorsInfo"
-	$ObjectID		5
-	$ClassName		"Simulink.EditorInfo"
-	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
-	Extents			[911.0, 715.0]
-	ZoomFactor		[1.25]
-	Offset			[152.28333333333217, 149.00952380952347]
+      Array {
+	Type			"Simulink.EditorInfo"
+	Dimension		2
+	Object {
+	  $ObjectID		  5
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkTopLevel"
+	  LoadSaveID		  "0"
+	  Extents		  [1249.0, 712.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [0.016666666665742014, 231.70285617964561]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "30"
+	  Extents		  [1249.0, 712.0]
+	  ZoomFactor		  [1.0]
+	  Offset		  [0.0, 0.0]
+	}
+	PropName		"EditorsInfo"
       }
     }
   }
@@ -66,9 +78,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Hwk"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Nov 15 22:34:30 2015"
-  RTWModifiedTimeStamp	  369526885
-  ModelVersionFormat	  "1.%<AutoIncrement:109>"
+  LastModifiedDate	  "Tue Nov 17 09:18:51 2015"
+  RTWModifiedTimeStamp	  369652730
+  ModelVersionFormat	  "1.%<AutoIncrement:145>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -108,7 +120,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    6
+    $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "heading_model_controlled"
     Array {
@@ -170,13 +182,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      7
+      $ObjectID		      8
       Version		      "1.14.2"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.14.2"
 	  StartTime		  "tstart"
 	  StopTime		  "tstop"
@@ -211,7 +223,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.14.2"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -244,7 +256,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
@@ -300,7 +312,7 @@ Model {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.14.2"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -390,7 +402,7 @@ Model {
 	  SFTransitionActionBeforeConditionDiag	"warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.14.2"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -431,7 +443,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.14.2"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -446,7 +458,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.14.2"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -462,7 +474,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
@@ -536,7 +548,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      16
+	      $ObjectID		      17
 	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
@@ -600,7 +612,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
@@ -686,18 +698,18 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 301, 40, 1413, 756 ] 
+      CurrentDlgPage	      "Optimization"
+      ConfigPrmDlgPosition     [ 285, -20, 1429, 772 ] 
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    7
+    $ObjectID		    8
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    18
+    $ObjectID		    19
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -916,7 +928,7 @@ Model {
   }
   System {
     Name		    "heading_model_controlled"
-    Location		    [51, 0, 1012, 889]
+    Location		    [51, 0, 1350, 889]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -930,12 +942,12 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "69"
+    SIDHighWatermark	    "76"
     Block {
       BlockType		      Clock
       Name		      "Clock"
       SID		      "68"
-      Position		      [725, 610, 745, 630]
+      Position		      [725, 735, 745, 755]
       ZOrder		      57
       ShowName		      off
     }
@@ -951,9 +963,20 @@ Model {
       BlockType		      Gain
       Name		      "Gain"
       SID		      "50"
-      Position		      [335, 402, 385, 448]
+      Position		      [335, 577, 385, 623]
       ZOrder		      38
-      Gain		      "-490"
+      Gain		      "c_ss(3)"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Gain1"
+      SID		      "72"
+      Position		      [365, 527, 415, 573]
+      ZOrder		      60
+      Gain		      "c_ss(4)"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -962,9 +985,9 @@ Model {
       BlockType		      Gain
       Name		      "Gain2"
       SID		      "54"
-      Position		      [300, 512, 350, 558]
+      Position		      [300, 687, 350, 733]
       ZOrder		      42
-      Gain		      "20 - K_d"
+      Gain		      "c_ss(2)"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -973,9 +996,42 @@ Model {
       BlockType		      Gain
       Name		      "Gain3"
       SID		      "65"
-      Position		      [300, 307, 350, 353]
+      Position		      [335, 472, 385, 518]
       ZOrder		      53
+      Gain		      "-T/K"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Gain4"
+      SID		      "73"
+      Position		      [265, 307, 335, 353]
+      ZOrder		      61
+      Gain		      "-2000000"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Gain5"
+      SID		      "74"
+      Position		      [265, 242, 315, 288]
+      ZOrder		      62
       Gain		      "-2000"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "Gain6"
+      SID		      "76"
+      Position		      [265, 387, 335, 433]
+      ZOrder		      64
+      Gain		      "-11000"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -989,12 +1045,32 @@ Model {
       ZOrder		      47
     }
     Block {
+      BlockType		      Integrator
+      Name		      "Integrator1"
+      SID		      "75"
+      Ports		      [1, 1]
+      Position		      [345, 250, 375, 280]
+      ZOrder		      63
+    }
+    Block {
       BlockType		      Product
       Name		      "Product1"
       SID		      "56"
       Ports		      [2, 1]
-      Position		      [235, 406, 265, 439]
+      Position		      [235, 581, 265, 614]
       ZOrder		      44
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Product2"
+      SID		      "71"
+      Ports		      [2, 1]
+      Position		      [300, 531, 330, 564]
+      ZOrder		      59
       InputSameDT	      off
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       RndMeth		      "Floor"
@@ -1004,12 +1080,12 @@ Model {
       BlockType		      Sum
       Name		      "Sum1"
       SID		      "51"
-      Ports		      [2, 1]
-      Position		      [420, 415, 440, 435]
+      Ports		      [3, 1]
+      Position		      [420, 590, 440, 610]
       ZOrder		      39
       ShowName		      off
       IconShape		      "round"
-      Inputs		      "|++"
+      Inputs		      "+++"
       InputSameDT	      off
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -1043,6 +1119,20 @@ Model {
       SaturateOnIntegerOverflow	off
     }
     Block {
+      BlockType		      Sum
+      Name		      "Sum4"
+      SID		      "70"
+      Ports		      [4, 1]
+      Position		      [395, 320, 415, 340]
+      ZOrder		      58
+      ShowName		      off
+      IconShape		      "round"
+      Inputs		      "+++-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
       BlockType		      ToWorkspace
       Name		      "To Workspace"
       SID		      "66"
@@ -1060,7 +1150,7 @@ Model {
       Name		      "To Workspace6"
       SID		      "69"
       Ports		      [1]
-      Position		      [770, 605, 830, 635]
+      Position		      [770, 730, 830, 760]
       ZOrder		      56
       ShowName		      off
       VariableName	      "t"
@@ -1077,8 +1167,8 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"model"
-	Location		[51, 0, 1012, 889]
-	Open			off
+	Location		[51, 0, 1350, 889]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1430,27 +1520,44 @@ Model {
       Points		      [25, 0]
       Branch {
 	ZOrder			78
-	Points			[0, 259; -454, 0; 0, -164; 28, 0]
+	Points			[0, 430; -419, 0; 0, -50]
 	Branch {
-	  ZOrder		  50
-	  Points		  [0, -10]
-	  DstBlock		  "Product1"
-	  DstPort		  1
-	}
-	Branch {
-	  ZOrder		  47
-	  Points		  [0, 5]
+	  ZOrder		  138
+	  Points		  [-7, 0; 0, -105]
 	  Branch {
-	    ZOrder		    60
-	    Points		    [0, 105]
-	    DstBlock		    "Gain2"
-	    DstPort		    1
+	    ZOrder		    47
+	    Points		    [0, -15]
+	    Branch {
+	      ZOrder		      124
+	      Points		      [0, -50]
+	      Branch {
+		ZOrder			140
+		Points			[0, -130]
+		DstBlock		"Gain6"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			139
+		DstBlock		"Product2"
+		DstPort			1
+	      }
+	    }
+	    Branch {
+	      ZOrder		      123
+	      DstBlock		      "Product1"
+	      DstPort		      1
+	    }
 	  }
 	  Branch {
 	    ZOrder		    52
 	    DstBlock		    "Product1"
 	    DstPort		    2
 	  }
+	}
+	Branch {
+	  ZOrder		  60
+	  DstBlock		  "Gain2"
+	  DstPort		  1
 	}
       }
       Branch {
@@ -1463,16 +1570,17 @@ Model {
       ZOrder		      48
       SrcBlock		      "Product1"
       SrcPort		      1
-      DstBlock		      "Gain"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      96
-      SrcBlock		      "Gain2"
-      SrcPort		      1
-      Points		      [75, 0]
-      DstBlock		      "Sum1"
-      DstPort		      2
+      Points		      [15, 0]
+      Branch {
+	ZOrder			122
+	DstBlock		"Product2"
+	DstPort			2
+      }
+      Branch {
+	ZOrder			121
+	DstBlock		"Gain"
+	DstPort			1
+      }
     }
     Line {
       ZOrder		      66
@@ -1481,8 +1589,18 @@ Model {
       Points		      [5, 0]
       Branch {
 	ZOrder			103
-	DstBlock		"To Workspace"
-	DstPort			1
+	Points			[1, 0]
+	Branch {
+	  ZOrder		  119
+	  DstBlock		  "To Workspace"
+	  DstPort		  1
+	}
+	Branch {
+	  ZOrder		  113
+	  Points		  [0, 466; -656, 0; 0, -301]
+	  DstBlock		  "Gain3"
+	  DstPort		  1
+	}
       }
       Branch {
 	ZOrder			85
@@ -1514,32 +1632,102 @@ Model {
       DstPort		      2
     }
     Line {
-      ZOrder		      86
-      SrcBlock		      "Sum3"
-      SrcPort		      1
-      DstBlock		      "Gain3"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      87
-      SrcBlock		      "Gain3"
-      SrcPort		      1
-      DstBlock		      "Sum2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      99
-      SrcBlock		      "Gain"
-      SrcPort		      1
-      DstBlock		      "Sum1"
-      DstPort		      1
-    }
-    Line {
       ZOrder		      105
       SrcBlock		      "Clock"
       SrcPort		      1
       DstBlock		      "To Workspace6"
       DstPort		      1
+    }
+    Line {
+      ZOrder		      117
+      SrcBlock		      "Sum4"
+      SrcPort		      1
+      DstBlock		      "Sum2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      126
+      SrcBlock		      "Product2"
+      SrcPort		      1
+      DstBlock		      "Gain1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      127
+      SrcBlock		      "Gain"
+      SrcPort		      1
+      DstBlock		      "Sum1"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      128
+      SrcBlock		      "Gain1"
+      SrcPort		      1
+      Points		      [24, 0; 0, 25]
+      DstBlock		      "Sum1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      129
+      SrcBlock		      "Gain2"
+      SrcPort		      1
+      Points		      [75, 0]
+      DstBlock		      "Sum1"
+      DstPort		      3
+    }
+    Line {
+      ZOrder		      131
+      SrcBlock		      "Gain4"
+      SrcPort		      1
+      Points		      [44, 0]
+      DstBlock		      "Sum4"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      145
+      SrcBlock		      "Gain3"
+      SrcPort		      1
+      Points		      [6, 0; 0, -133; -19, 0; 0, 6]
+    }
+    Line {
+      ZOrder		      133
+      SrcBlock		      "Integrator1"
+      SrcPort		      1
+      Points		      [25, 0]
+      DstBlock		      "Sum4"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      134
+      SrcBlock		      "Gain5"
+      SrcPort		      1
+      DstBlock		      "Integrator1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      118
+      SrcBlock		      "Sum3"
+      SrcPort		      1
+      Points		      [22, 0]
+      Branch {
+	ZOrder			137
+	Points			[0, -65]
+	DstBlock		"Gain5"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			136
+	DstBlock		"Gain4"
+	DstPort			1
+      }
+    }
+    Line {
+      ZOrder		      143
+      SrcBlock		      "Gain6"
+      SrcPort		      1
+      Points		      [65, 0]
+      DstBlock		      "Sum4"
+      DstPort		      4
     }
   }
 }

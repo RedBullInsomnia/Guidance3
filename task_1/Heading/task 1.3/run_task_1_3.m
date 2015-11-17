@@ -68,7 +68,7 @@ f = tf(K, [T 1 0]);
 % K_i = K_p*omega_n/10
 % 
 
-psi_d = deg2rad(18);
+psi_d = deg2rad(9);
 
 tstop = 4000;
 sim heading_model_controlled;

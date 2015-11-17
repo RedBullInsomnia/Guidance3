@@ -1,11 +1,12 @@
 
 clc;
 clear all;
+close all;
 
 %% Simulation
 
 tstart = 0;         %Sim start time
-tstop  = 5000;      %Sim stop time
+tstop  = 3300;      %Sim stop time
 tsamp  = 10;        %Sampling time (NOT ODE solver time step)
 dec    = 10;
 
@@ -15,10 +16,17 @@ psi0 = 0;           %Inital yaw angle
 r0   = 0;           %Inital yaw rate
 c    = 1;           %Current on (1)/off (0)
 
+track  = 0;
+
 not_use_beta_transform  = 0;
 not_use_speed_transform = 0;
 
-track  = 1;
+%% Load heading, surge controller parameters
+
+load('heading_controller');
+load('surge_controller');
+
+%% Simulate
 
 sim('MSFartoystyring');
 
@@ -30,14 +38,15 @@ v = v(:, 2);
 if (true)
     
     waypoints = waypoints_collection;
-    pathplotter(p(:, 1), p(:, 2),  psi, tsamp, dec, tstart, tstop, track, waypoints.waypoints, u, v);
+%     pathplotter(p(:, 1), p(:, 2),  psi, tsamp, dec, tstart, tstop, track, waypoints.waypoints, u, v);
+    pathplotter_original(p(:, 1), p(:, 2),  psi, tsamp, dec, tstart, tstop, track, waypoints.waypoints);
 end
     
 figureIndex = 12;
 
 % Speed
 
-if (true)
+if (false)
 
 	figure(figureIndex);
 	clf();
@@ -55,7 +64,7 @@ end
 
 % Inputs
 
-if (true)
+if (false)
 
 	figure(figureIndex);
 	clf();
@@ -69,7 +78,7 @@ end
 
 % Heading
 
-if (true)
+if (false)
 
 	figure(figureIndex);
 	clf();
@@ -84,7 +93,7 @@ end
 
 % Course
 
-if (true)
+if (false)
 
 	figure(figureIndex);
 	clf();
@@ -98,7 +107,7 @@ end
 
 % Crab angle
 
-if (true)
+if (false)
 
 	figure(figureIndex);
 	figureIndex = figureIndex + 1;

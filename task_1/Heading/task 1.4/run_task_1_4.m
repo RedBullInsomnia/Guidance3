@@ -1,5 +1,5 @@
-clear all
-close all
+%clear all
+%close all
 clc
 
 tstart=0;      %Sim start time
@@ -21,12 +21,12 @@ psi_d(:,1) = t;
 r_d(:,1) = t;
 nc = 7.3;
 
-% Controller gains :
-Ki = 2000;
-Kp = 200000;
-Kd = 12000;
+% Controller gains 
+Ki = 0.6;
+Kp = 2000;
+Kd = 100;
 lf4 = -1.8257e+06;
-lf1 = 500;
+lf1 = -500;
 lf2 = 20;
 
 sim MSFartoystyring_1_4
@@ -41,7 +41,7 @@ ylabel ('$\tilde{\psi}$(rad)','Interpreter', 'latex')
 % Figure 2 psi and psi_d
 figure
 plot(t, psi, t, psi_d(:,2), 'r')
-
+set(gca, 'fontSize', 22);
 xlabel 'time(s)'
 ylabel 'Heading(rad)'
 legend('\psi', '\psi_{desired}');
@@ -50,12 +50,14 @@ legend('\psi', '\psi_{desired}');
 r_d = -0.008*0.3*cos(0.008*t);
 err_r = r_d - r;
 figure
+set(gca, 'fontSize', 22);
 plot(t, err_r)
 xlabel 'time(s)'
 ylabel ('$\tilde{r}$(rad/s)','Interpreter', 'latex')
 
 % Figure 4 r and r_d
 figure
+set(gca, 'fontSize', 22);
 plot(t, r, t, r_d)
 xlabel 'time(s)'
 ylabel 'yaw rate(rad/s)'
